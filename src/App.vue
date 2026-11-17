@@ -9,13 +9,15 @@ const navigation = [
   { name: 'Skills', id: 'skills' },
   { name: 'Projects', id: 'projects' },
   { name: 'Cyber Lab', id: 'cyber-lab' },
+  { name: 'Learning', id: 'learning' },
   { name: 'Contact', id: 'contact' },
 ]
 
 const skills = [
   { category: 'Programming', items: ['C++', 'Python', 'JavaScript', 'TypeScript']},
-  { category: 'Frontend', items: ['HTML5', 'CSS3', 'Vue 3', 'Tailwind CSS']},
-  { category: 'Backend', items: ['Next.js', 'Node.js', 'Python Flask', 'Prisma', 'REST APTs']},
+  { category: 'Frontend', items: ['HTML5', 'CSS3']},
+  { category: 'Frameworks', items: ['Vue 3', 'Next.js', 'Tailwind CSS']},
+  { category: 'Backend', items: ['Node.js', 'Python Flask', 'Prisma', 'REST APIs']},
   { category: 'Database', items: ['MariaDB', 'MySQL']},
   { category: 'Cybersecurity', items: ['Security Auditing', 'Kali Linux', 'Penetration Testing', 'Vulnerability Assessment', 'Network Security']},
   { category: 'Linux', items: ['Kali Linux', 'Linux CLI', 'File & Directory Management', 'Linux Networking']},
@@ -26,7 +28,7 @@ const projects = [
   { number: '01',
     title: 'CyberShield Security Awareness',
     category: 'CYBERSECURITY',
-    description: 'A Practical security awareness project covering phashing recognition, website security awareness, and password strength.',
+    description: 'A practical security awareness project covering phishing recognition, website security awareness, and password strength.',
     technologies: ['Kali Linux', 'Web Security', 'Security Awareness'],
     status: 'In Progress', },
 
@@ -36,7 +38,7 @@ const projects = [
     description: 'Conducting security assessments on an existing staff management web application to explore potential vulnerabilities, evaluate authentication mechanisms, and understand web application security risks in an authorized testing environment.',
     technologies: ['Vue 3', 'TypeScript', 'Next.js', 'Prisma', 'MariaDB', 'Kali Linux'],
     status: 'Security Testing',
-    credit: 'Original Developer: [Sek Thorn]'
+    credit: 'Original developer: Sek Thorn'
   },
 
   { number:'03',
@@ -49,7 +51,7 @@ const projects = [
   { number:'04',
     title: 'Student Management System',
     category: 'SOFTWARE DEVELOPMENT',
-    description: 'A C++ console-based Student Management System featuring user authentication, CRUD operattions, student search, sorting, pagination, statistical summaries, and CSV file handling.',
+    description: 'A C++ console-based Student Management System featuring user authentication, CRUD operations, student search, sorting, pagination, statistical summaries, and CSV file handling.',
     technologies: ['C++', 'OOP', 'Vector', 'File Handling', 'CSV'],
     status: 'Completed', },
 ]
@@ -66,11 +68,13 @@ const projects = [
       <button 
         class="menu-toggle"
         @click="menuOpen = !menuOpen"
-        aria-label="Toggle navigation">
-        &#9776;
+        :aria-expanded="menuOpen"
+        aria-controls="primary-navigation"
+        :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'">
+        <span aria-hidden="true">{{ menuOpen ? '×' : '☰' }}</span>
       </button>
 
-      <nav :class="{ 'nav-open' : menuOpen }">
+      <nav id="primary-navigation" :class="{ 'nav-open' : menuOpen }">
         <a
           v-for="item in navigation"
           :key="item.id"
@@ -105,12 +109,17 @@ const projects = [
             Passionate about building applications, exploring Linux, understanding networking, and learning how to secure technology.
           </p>
 
+          <div class="hero-actions">
+            <a href="#projects" class="button-primary">Explore my work <span aria-hidden="true">↗</span></a>
+            <a href="#contact" class="button-secondary">Get in touch</a>
+          </div>
+
           <div class="hero-tech">
             <span>FOCUS AREA</span>
             <span>Cybersecurity</span>
             <span>Software Development</span>
             <span>Full-Stack Development</span>
-            <span>Lunix</span>
+          <span>Linux</span>
             <span>Networking</span>
           </div>
         </div>
@@ -153,18 +162,18 @@ const projects = [
         <div class="about-grid">
           <div>
             <p class="section-description">
-              I'm passionate about software devolopment and cybersecurity.
-              I enjoy understanding how applications work, how ssystems communicate, and how security weaknesses can be prevented.
+              I'm passionate about software development and cybersecurity.
+              I enjoy understanding how applications work, how systems communicate, and how security weaknesses can be prevented.
             </p>
             <p class="section-description">
               My learning journey combines programming, Linux systems, networking, and practical cybersecurity skills.
-              i believe that the best way to learn technology is to buld, experiment, and solve real problems. 
+              I believe that the best way to learn technology is to build, experiment, and solve real problems.
             </p>
           </div>
 
           <div class="profile-card">
             <div class="profile-image-wrapper">
-              <img src="../public/image/Blue-Lit Professional Portrait.png" alt="My professional profile photo" class="profile-image"/>
+            <img src="/image/Blue-Lit Professional Portrait.png" alt="Portrait of Sros Socheata" class="profile-image"/>
             </div>
             <h3>SROS SOCHEATA</h3>
             <p>Aspiring Cybersecurity Specialist & Developer</p>
@@ -200,15 +209,15 @@ const projects = [
       <!--projects section-->
       <section id="projects" class="section-container section-block">
         <p class="eyebrow">// 03. FEATURED PROJECTS</p>
-        <h2>Thing I have <span class="gradient-text">worked on.</span></h2>
+        <h2>Things I have <span class="gradient-text">worked on.</span></h2>
         <p class="section-description">
-          Practical projects that demostrate my development and cybersecurity learning journey.
+          Practical projects that demonstrate my development and cybersecurity learning journey.
         </p>
 
         <div class="projects-grid">
           <article v-for="project in projects" :key="project.number" class="project-card">
             <div class="project-top">
-              <span class="project-number">0{{ project.number }}</span>
+              <span class="project-number">{{ project.number }}</span>
               <span class="project-category">{{ project.category }}</span>
             </div>
 
@@ -221,7 +230,7 @@ const projects = [
 
             <div class="project-bottom">
               <span class="project-status">{{ project.status }}</span>
-              <span class="project-arrow">↗</span>
+              <span class="project-arrow" aria-hidden="true">↗</span>
             </div>
 
             <p v-if="project.credit" class="project-credit">
@@ -279,14 +288,15 @@ const projects = [
       <!--Learning-->
       <section id="learning" class="section-container section-block">
         <p class="eyebrow">// 05. LEARNING JOURNEY</p>
-        <h2>Always <span class="gradient-text">learning.</span></h2>
+        <h2>Building knowledge <span class="gradient-text">step by step.</span></h2>
+        <p class="section-description learning-intro">Topics I am working through as I build my foundations. Certifications will be listed here as I earn them.</p>
 
         <div class="learning-list">
           <div><span>01</span><p>Computer Fundamentals & Operating Systems</p></div>
           <div><span>02</span><p>Linux & Networking</p></div>
           <div><span>03</span><p>Programming & Software Development</p></div>
           <div><span>04</span><p>Cybersecurity Fundamentals</p></div>
-          <div><span>05</span><p>Ethical Hacking & Defensive Securirty</p></div>
+          <div><span>05</span><p>Ethical Hacking & Defensive Security</p></div>
           <div><span>06</span><p>Cloud Security & Specialization</p></div>
         </div>
       </section>
@@ -296,7 +306,7 @@ const projects = [
         <p class="eyebrow">// 06. CONTACT</p>
         <h2>Let's build something <span class="gradient-text">meaningful.</span></h2>
         <p class="section-description">
-          I'm interested in connecting with developers, cybersecurity professionals, and  people who love technology.
+          I'm interested in connecting with developers, cybersecurity professionals, and people who love technology.
         </p>
 
         <div class="contact-actions">
@@ -311,7 +321,7 @@ const projects = [
             class="contact-link">LinkedIn</a>
         </div>
 
-        <p class="contact-noted">
+        <p class="contact-note">
           Open to learning opportunities, collaboration, and professional connections.
         </p>
       </section>
@@ -321,8 +331,8 @@ const projects = [
     <!--footer-->
     <footer class="footer">
       <a href="#home" class="logo">&lt;SROS<span class="accent">SOCHEATA</span>/&gt;</a>
-      <p>Designed & build BY Sros Socheata</p>
-      <p>&copy; 2026 &middot; Learing, building, and securing.</p>
+      <p>Designed &amp; built by Sros Socheata</p>
+      <p>&copy; 2026 &middot; Learning, building, and securing.</p>
     </footer>
 
   </div>
