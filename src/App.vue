@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-const menuOpen = ref(false);
+const menuOpen = ref(false)
 
 const navigation = [
-  { name: 'Home', id: 'home' },
   { name: 'About', id: 'about' },
   { name: 'Skills', id: 'skills' },
   { name: 'Projects', id: 'projects' },
@@ -14,326 +13,147 @@ const navigation = [
 ]
 
 const skills = [
-  { category: 'Programming', items: ['C++', 'Python', 'JavaScript', 'TypeScript']},
-  { category: 'Frontend', items: ['HTML5', 'CSS3']},
-  { category: 'Frameworks', items: ['Vue 3', 'Next.js', 'Tailwind CSS']},
-  { category: 'Backend', items: ['Node.js', 'Python Flask', 'Prisma', 'REST APIs']},
-  { category: 'Database', items: ['MariaDB', 'MySQL']},
-  { category: 'Cybersecurity', items: ['Security Auditing', 'Kali Linux', 'Penetration Testing', 'Vulnerability Assessment', 'Network Security']},
-  { category: 'Linux', items: ['Kali Linux', 'Linux CLI', 'File & Directory Management', 'Linux Networking']},
-  { category: 'Networking', items: ['TCP/IP', 'Subnetting', 'Cisco Packet Tracer']}
+  { category: 'Programming', items: ['C++', 'Python', 'JavaScript', 'TypeScript'] },
+  { category: 'Frontend', items: ['HTML5', 'CSS3'] },
+  { category: 'Frameworks', items: ['Vue 3', 'Next.js', 'Tailwind CSS'] },
+  { category: 'Backend', items: ['Node.js', 'Python Flask', 'Prisma', 'REST APIs'] },
+  { category: 'Database', items: ['MariaDB', 'MySQL'] },
+  { category: 'Cybersecurity', items: ['Security Auditing', 'Kali Linux', 'Penetration Testing', 'Vulnerability Assessment', 'Network Security'] },
+  { category: 'Linux', items: ['Kali Linux', 'Linux CLI', 'File & Directory Management', 'Linux Networking'] },
+  { category: 'Networking', items: ['TCP/IP', 'Subnetting', 'Cisco Packet Tracer'] },
 ]
 
 const projects = [
-  { number: '01',
-    title: 'CyberShield Security Awareness',
-    category: 'CYBERSECURITY',
-    description: 'A practical security awareness project covering phishing recognition, website security awareness, and password strength.',
-    technologies: ['Kali Linux', 'Web Security', 'Security Awareness'],
-    status: 'In Progress', },
+  { number: '01', title: 'CyberShield Security Awareness', category: 'CYBERSECURITY', description: 'A practical security awareness project covering phishing recognition, website security awareness, and password strength.', technologies: ['Kali Linux', 'Web Security', 'Security Awareness'], status: 'Final Project' },
+  { number: '02', title: 'Staff Management System', category: 'WEB SECURITY TESTING', description: 'Conducting security assessments on an existing staff management web application to explore potential vulnerabilities, evaluate authentication mechanisms, and understand web application security risks in an authorized testing environment.', technologies: ['Vue 3', 'TypeScript', 'Next.js', 'Prisma', 'MariaDB', 'Kali Linux'], status: 'Security Testing', credit: 'Original developer: Sek Thorn' },
+  { number: '03', title: 'Linux & Networking Lab', category: 'SYSTEMS & NETWORKING', description: 'Hands-on practice with Linux administration, network configuration, IP addressing, and troubleshooting.', technologies: ['Kali Linux', 'Linux', 'TCP/IP'], status: 'Learning' },
+  { number: '04', title: 'Student Management System', category: 'SOFTWARE DEVELOPMENT', description: 'A C++ console-based Student Management System featuring user authentication, CRUD operations, student search, sorting, pagination, statistical summaries, and CSV file handling.', technologies: ['C++', 'OOP', 'Vector', 'File Handling', 'CSV'], status: 'Completed' },
+]
 
-  { number:'02',
-    title: 'Staff Management System',
-    category: 'WEB SECURITY TESTING',
-    description: 'Conducting security assessments on an existing staff management web application to explore potential vulnerabilities, evaluate authentication mechanisms, and understand web application security risks in an authorized testing environment.',
-    technologies: ['Vue 3', 'TypeScript', 'Next.js', 'Prisma', 'MariaDB', 'Kali Linux'],
-    status: 'Security Testing',
-    credit: 'Original developer: Sek Thorn'
-  },
+const labTopics = [
+  { icon: '⌘', title: 'Linux Administration', description: 'Terminal commands, permissions, processes, and Bash scripting.' },
+  { icon: '↗', title: 'CCNA (200-3001)', description: 'Learning networking fundamentals, IP addressing, and routing protocols.' },
+  { icon: '⌁', title: 'Network Security', description: 'Understanding network protocols, firewalls, and intrusion detection systems.' },
+  { icon: '⌕', title: 'Security Assessment', description: 'Learning vulnerability assessment and safe security testing methods.' },
+  { icon: '◇', title: 'Security Awareness', description: 'Understanding phishing, passwords, and human-centered security.' },
+]
 
-  { number:'03',
-    title: 'Linux & Networking Lab',
-    category: 'SYSTEMS & NETWORKING',
-    description: 'Hands-on practice with Linux administration, network configuration, IP addressing, and troubleshooting.',
-    technologies: ['Kali Linux', 'Linux', 'TCP/IP'],
-    status: 'Learning', },
-
-  { number:'04',
-    title: 'Student Management System',
-    category: 'SOFTWARE DEVELOPMENT',
-    description: 'A C++ console-based Student Management System featuring user authentication, CRUD operations, student search, sorting, pagination, statistical summaries, and CSV file handling.',
-    technologies: ['C++', 'OOP', 'Vector', 'File Handling', 'CSV'],
-    status: 'Completed', },
+const learningPath = [
+  'Computer Fundamentals & Operating Systems',
+  'Linux & Networking',
+  'Programming & Software Engineering',
+  'Cybersecurity Fundamentals',
+  'Ethical Hacking & Defensive Security',
+  'Cloud Security & Specialization',
 ]
 </script>
 
 <template>
   <div class="site-wrapper">
-    <!--navigation-->
     <header class="navbar">
-      <a href="#home" class="logo">
-        <span class="logo-bracket">&gt;</span>SROS<span class="accent">SOCHEATA</span><span class="logo-bracket">&gt;</span>
+      <a href="#home" class="logo" aria-label="Sros Socheata, home">
+        <span class="logo-mark">S<span>.</span></span>
+        <span class="brand-name">SROS SOCHEATA</span>
       </a>
 
-      <button 
-        class="menu-toggle"
-        @click="menuOpen = !menuOpen"
-        :aria-expanded="menuOpen"
-        aria-controls="primary-navigation"
-        :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'">
+      <button class="menu-toggle" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen" aria-controls="primary-navigation" :aria-label="menuOpen ? 'Close navigation' : 'Open navigation'">
         <span aria-hidden="true">{{ menuOpen ? '×' : '☰' }}</span>
       </button>
 
-      <nav id="primary-navigation" :class="{ 'nav-open' : menuOpen }">
-        <a
-          v-for="item in navigation"
-          :key="item.id"
-          :href="`#${item.id}`"
-          @click="menuOpen = false">
-        {{ item.name }}
-        </a>
-        <a href="#contact" class="nav-contact" @click="menuOpen = false">
-          Let's Talk
-        </a>
+      <nav id="primary-navigation" :class="{ 'nav-open': menuOpen }" aria-label="Main navigation">
+        <a v-for="item in navigation" :key="item.id" :href="`#${item.id}`" @click="menuOpen = false">{{ item.name }}</a>
       </nav>
     </header>
 
     <main>
-      <!--hero section-->
       <section id="home" class="hero section-container">
-        <div class="hero-content">
-          <div class="availability">
-            <span class="status-dot"></span>
-            OPEN TO LEARNING & OPPORTUNITIES
-          </div>
-
-          <p class="eyebrow">HELLO, WORLD! I'M A TECHNOLOGY ENTHUSIAST</p>
-
-          <h1>
-            Building the future.<br />
-            <span class="gradient-text">Securing the digital world.</span>
-          </h1>
-
-          <p class="hero-description">
-            Aspiring Cybersecurity Specialist & Software Developer.
-            Passionate about building applications, exploring Linux, understanding networking, and learning how to secure technology.
-          </p>
-
+        <div class="hero-copy">
+          <div class="availability"><span class="status-dot"></span> OPEN TO LEARNING OPPORTUNITIES</div>
+          <p class="eyebrow">CYBERSECURITY · SOFTWARE · NETWORKS</p>
+          <h1>Curious by nature.<br /><em>Building with purpose.</em></h1>
+          <p class="hero-description">I’m Sros Socheata, an aspiring cybersecurity specialist with an interest in network engineering. I build applications, explore Linux, and learn how to make technology more secure.</p>
           <div class="hero-actions">
             <a href="#projects" class="button-primary">Explore my work <span aria-hidden="true">↗</span></a>
-            <a href="#contact" class="button-secondary">Get in touch</a>
+            <a href="#about" class="text-link">A little about me <span aria-hidden="true">↓</span></a>
           </div>
-
-          <div class="hero-tech">
-            <span>FOCUS AREA</span>
-            <span>Cybersecurity</span>
-            <span>Software Development</span>
-            <span>Full-Stack Development</span>
-          <span>Linux</span>
-            <span>Networking</span>
-          </div>
+          <div class="hero-meta"><span>BASED IN PHNOM PENH, CAMBODIA</span><span>ALWAYS LEARNING &amp; BUILDING</span></div>
         </div>
 
-        <div class="terminal">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <i></i><i></i><i></i>
-            </div>
-            <span>developer@cyberjourney:~$</span>
-          </div>
-
-          <div class="terminal-body">
-            <p><span class="terminal-green">#</span>whoami</p>
-            <h3>Technology Enthusiast</h3>
-
-            <p><span class="terminal-green">#</span>cat interests.txt</p>
-            <p class="terminal-output">
-              Cybersecurity<br />
-              Software Development<br />
-              Linux & Networking<br />
-              Continuous Learning
-            </p>
-
-            <p><span class="terminal-green">#</span>cat mission.txt</p>
-            <p class="terminal-blue">
-              Learn. Build. Test. Secure.
-            </p>
-
-            <p><span class="terminal-green">#</span> <span class="cursor">_</span></p>
-          </div>
+        <div class="hero-visual" aria-label="Portrait of Sros Socheata">
+          <div class="portrait-frame"><img src="/image/Blue-Lit Professional Portrait.png" alt="Portrait of Sros Socheata" class="hero-portrait" /></div>
+          <div class="portrait-caption"><span>THE PERSON BEHIND THE KEYBOARD</span><span class="caption-rule"></span><span>01 — 06</span></div>
+          <div class="hero-stamp" aria-hidden="true"><span>LEARN</span><span class="stamp-star">✳</span><span>BUILD</span><span>SECURE</span></div>
+          <span class="hero-index" aria-hidden="true">SC—26</span>
         </div>
+        <a href="#about" class="scroll-cue"><span></span> SCROLL TO EXPLORE</a>
       </section>
 
-      <!--about section-->
-      <section id="about" class="section-container section-block">
-        <p class="eyebrow">// 01. ABOUT ME</p>
-        <h2>Curiosity drives <span class="gradient-text">my journey.</span></h2>
-
+      <section id="about" class="section-container section-block about-section">
+        <div class="section-heading"><p class="eyebrow"><span>01</span> / ABOUT ME</p><span class="heading-note">A PRACTICE OF CURIOSITY</span></div>
         <div class="about-grid">
-          <div>
-            <p class="section-description">
-              I'm passionate about software development and cybersecurity.
-              I enjoy understanding how applications work, how systems communicate, and how security weaknesses can be prevented.
-            </p>
-            <p class="section-description">
-              My learning journey combines programming, Linux systems, networking, and practical cybersecurity skills.
-              I believe that the best way to learn technology is to build, experiment, and solve real problems.
-            </p>
+          <h2>Curiosity is where<br />the work <em>begins.</em></h2>
+          <div class="about-copy">
+            <p>I'm passionate about software development and cybersecurity. I enjoy understanding how applications work, how systems communicate, and how security weaknesses can be prevented.</p>
+            <p>My learning journey combines programming, Linux systems, networking, and practical cybersecurity skills. I believe the best way to learn technology is to build, experiment, and solve real problems.</p>
+            <a href="#skills" class="inline-link">Explore my toolkit <span aria-hidden="true">↗</span></a>
           </div>
-
-          <div class="profile-card">
-            <div class="profile-image-wrapper">
-            <img src="/image/Blue-Lit Professional Portrait.png" alt="Portrait of Sros Socheata" class="profile-image"/>
-            </div>
-            <h3>SROS SOCHEATA</h3>
-            <p>Aspiring Cybersecurity Specialist & Developer</p>
-
-            <span class="profile-status">
-              <span class="status-dot"></span>
-              Always Learning & Building
-            </span>
-          </div>
-
         </div>
+        <div class="about-strip"><span>MY APPROACH</span><p>Learn with intention. Build with care. Keep asking better questions.</p><span class="strip-symbol">✳</span></div>
       </section>
 
-      <!--skills section-->
       <section id="skills" class="section-container section-block">
-        <p class="eyebrow">// 02. TECHNICAL SKILLS</p>
-        <h2>My technical <span class="gradient-text">toolkit.</span></h2>
-        <p class="section-description">
-          Technologies and concepts I have studied or practiced.
-          Skill levels will be updated as I gain experience.
-        </p>
-
+        <div class="section-heading"><p class="eyebrow"><span>02</span> / TECHNICAL SKILLS</p><span class="heading-note">A TOOLKIT IN PROGRESS</span></div>
+        <div class="section-intro"><h2>Tools for the<br /><em>curious mind.</em></h2><p class="section-description">Technologies and concepts I have studied or practiced. Skill levels will be updated as I gain experience.</p></div>
         <div class="skills-grid">
-          <article v-for="skill in skills" :key="skill.category" class="skill-card">
+          <article v-for="(skill, index) in skills" :key="skill.category" class="skill-card">
+            <div class="skill-card-top"><span>0{{ index + 1 }}</span><span class="skill-mark">↗</span></div>
             <h3>{{ skill.category }}</h3>
-            <div class="skill-tags">
-              <span v-for="item in skill.items" :key="item">{{ item }}</span>
-            </div>
+            <div class="skill-tags"><span v-for="item in skill.items" :key="item">{{ item }}</span></div>
           </article>
         </div>
       </section>
 
-      <!--projects section-->
-      <section id="projects" class="section-container section-block">
-        <p class="eyebrow">// 03. FEATURED PROJECTS</p>
-        <h2>Things I have <span class="gradient-text">worked on.</span></h2>
-        <p class="section-description">
-          Practical projects that demonstrate my development and cybersecurity learning journey.
-        </p>
-
+      <section id="projects" class="section-container section-block projects-section">
+        <div class="section-heading"><p class="eyebrow"><span>03</span> / SELECTED WORK</p><span class="heading-note">BUILT, TESTED, LEARNED</span></div>
+        <div class="section-intro"><h2>Work in<br /><em>progress.</em></h2><p class="section-description">Practical projects that demonstrate my development and cybersecurity learning journey.</p></div>
         <div class="projects-grid">
           <article v-for="project in projects" :key="project.number" class="project-card">
-            <div class="project-top">
-              <span class="project-number">{{ project.number }}</span>
-              <span class="project-category">{{ project.category }}</span>
+            <div class="project-top"><span class="project-number">{{ project.number }}</span><span class="project-category">{{ project.category }}</span></div>
+            <div class="project-art" :class="`project-art-${project.number}`" aria-hidden="true"><span class="art-orbit"></span><span class="art-glyph">{{ project.number === '01' ? '◈' : project.number === '02' ? '⌘' : project.number === '03' ? '⌁' : '{ }' }}</span><span class="art-caption">SROS SOCHEATA · {{ project.number }}</span></div>
+            <div class="project-content"><h3>{{ project.title }}</h3><p class="project-description">{{ project.description }}</p>
+              <div class="skill-tags"><span v-for="tech in project.technologies" :key="tech">{{ tech }}</span></div>
+              <div class="project-bottom"><span class="project-status">{{ project.status }}</span><span class="project-arrow" aria-hidden="true">↗</span></div>
+              <p v-if="project.credit" class="project-credit">{{ project.credit }}</p>
             </div>
-
-            <h3>{{ project.title }}</h3>
-            <p class="project-description">{{ project.description }}</p>
-
-            <div class="skill-tags">
-              <span v-for="tech in project.technologies" :key="tech">{{ tech }}</span>
-            </div>
-
-            <div class="project-bottom">
-              <span class="project-status">{{ project.status }}</span>
-              <span class="project-arrow" aria-hidden="true">↗</span>
-            </div>
-
-            <p v-if="project.credit" class="project-credit">
-              {{ project.credit }}
-            </p>
           </article>
         </div>
       </section>
 
-      <!--Cyber lab-->
       <section id="cyber-lab" class="section-container section-block">
-        <p class="eyebrow">// 04. CYBER LAB</p>
-        <h2>learning through <span class="gradient-text">practice.</span></h2>
-
+        <div class="section-heading"><p class="eyebrow"><span>04</span> / CYBER LAB</p><span class="heading-note">PRACTICE WITH PURPOSE</span></div>
         <div class="lab-panel">
-          <div class="lab-header">
-            <span class="status-dot"></span>
-            PERSONAL LEARNING ENVIRONMENT
-          </div>
-
-          <div class="lab-grid">
-            <div>
-              <span class="lab-icon">&ldquo;</span>
-              <h3>Linux Administration</h3>
-              <p>Terminal commands, permissions, processes, and Bash scripting.</p>
-            </div>
-            <div>
-              <span class="lab-icon">&#127760;</span>
-              <h3>CCNA (200-3001)</h3>
-              <p>Learning networking fundamentals, IP addressing, and routing protocols.</p>
-            </div>
-            <div>
-              <span class="lab-icon">&#8961;</span>
-              <h3>Network Security</h3>
-              <p>Understanding network protocols, firewalls, and intrusion detection systems.</p>
-            </div>
-            <div>
-              <span class="lab-icon">&#8982;</span>
-              <h3>Security Assessment</h3>
-              <p>Learning vulnerability assessment and safe security testing methods.</p>
-            </div>
-            <div>
-              <span class="lab-icon">&#9672;</span>
-              <h3>Security Awareness</h3>
-              <p>Understanding phishing, passwords, and human-centered security.</p>
-            </div>
-          </div>
-
-          <p class="lab-note">
-            All security testing is performed in authorized learning environment and systems.
-          </p>
+          <div class="lab-lead"><p class="eyebrow">PERSONAL LEARNING ENVIRONMENT</p><h2>Learning by<br /><em>doing the work.</em></h2><p>Exploring systems, networks, and security through hands-on practice.</p><span class="lab-seal" aria-hidden="true">✳</span></div>
+          <div class="lab-topics"><article v-for="(topic, index) in labTopics" :key="topic.title"><span class="lab-icon">{{ topic.icon }}</span><span class="lab-topic-number">0{{ index + 1 }}</span><div><h3>{{ topic.title }}</h3><p>{{ topic.description }}</p></div></article></div>
+          <p class="lab-note">All security testing is performed in authorized learning environments and systems.</p>
         </div>
       </section>
 
-      <!--Learning-->
       <section id="learning" class="section-container section-block">
-        <p class="eyebrow">// 05. LEARNING JOURNEY</p>
-        <h2>Building knowledge <span class="gradient-text">step by step.</span></h2>
-        <p class="section-description learning-intro">Topics I am working through as I build my foundations. Certifications will be listed here as I earn them.</p>
-
-        <div class="learning-list">
-          <div><span>01</span><p>Computer Fundamentals & Operating Systems</p></div>
-          <div><span>02</span><p>Linux & Networking</p></div>
-          <div><span>03</span><p>Programming & Software Development</p></div>
-          <div><span>04</span><p>Cybersecurity Fundamentals</p></div>
-          <div><span>05</span><p>Ethical Hacking & Defensive Security</p></div>
-          <div><span>06</span><p>Cloud Security & Specialization</p></div>
-        </div>
+        <div class="section-heading"><p class="eyebrow"><span>05</span> / LEARNING JOURNEY</p><span class="heading-note">FOUNDATIONS TO SPECIALIZATION</span></div>
+        <div class="section-intro"><h2>One step<br />at a <em>time.</em></h2><p class="section-description learning-intro">Topics I am working through as I build my foundations. Certifications will be listed here as I earn them.</p></div>
+        <ol class="learning-list"><li v-for="(item, index) in learningPath" :key="item"><span class="learning-number">0{{ index + 1 }}</span><p>{{ item }}</p><span class="learning-arrow" aria-hidden="true">↗</span></li></ol>
       </section>
 
-      <!--Contact-->
       <section id="contact" class="section-container section-block contact-section">
-        <p class="eyebrow">// 06. CONTACT</p>
-        <h2>Let's build something <span class="gradient-text">meaningful.</span></h2>
-        <p class="section-description">
-          I'm interested in connecting with developers, cybersecurity professionals, and people who love technology.
-        </p>
-
-        <div class="contact-actions">
-          <a href="mailto:srossocheata779@gmail.com" class="button-primary">Send Me an Email</a>
-          <a 
-            href="https://github.com/srossocheata779-ship-it" 
-            target="_blank" rel="noopener noreferrer" 
-            class="contact-link">GitHub</a>
-          <a 
-            href="https://www.linkedin.com/in/sros-socheata-8183403b0" 
-            target="_blank" rel="noopener noreferrer" 
-            class="contact-link">LinkedIn</a>
-        </div>
-
-        <p class="contact-note">
-          Open to learning opportunities, collaboration, and professional connections.
-        </p>
+        <p class="eyebrow"><span>06</span> / CONTACT</p>
+        <p class="contact-kicker">HAVE A GOOD QUESTION?</p>
+        <h2>Let’s make<br /><em>something matter.</em></h2>
+        <p class="section-description">I'm interested in connecting with developers, cybersecurity professionals, and people who love technology.</p>
+        <div class="contact-actions"><a href="mailto:srossocheata779@gmail.com" class="button-primary">Send me an email <span aria-hidden="true">↗</span></a><a href="https://github.com/srossocheata779-ship-it" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/sros-socheata-8183403b0" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn <span aria-hidden="true">↗</span></a></div>
+        <p class="contact-note">Open to learning opportunities, collaboration, and professional connections.</p>
       </section>
-
     </main>
 
-    <!--footer-->
-    <footer class="footer">
-      <a href="#home" class="logo">&lt;SROS<span class="accent">SOCHEATA</span>/&gt;</a>
-      <p>Designed &amp; built by Sros Socheata</p>
-      <p>&copy; 2026 &middot; Learning, building, and securing.</p>
-    </footer>
-
+    <footer class="footer"><a href="#home" class="logo" aria-label="Sros Socheata, home"><span class="logo-mark">S<span>.</span></span><span class="brand-name">SROS SOCHEATA</span></a><p>Designed &amp; built by Sros Socheata</p><p>© 2026 · Phnom Penh, Cambodia</p></footer>
   </div>
 </template>
