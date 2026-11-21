@@ -37,8 +37,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 /* Navigation */
 .navbar { height: 78px; padding: 0 max(32px, calc((100vw - var(--content)) / 2)); display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); background: rgba(16, 17, 15, .9); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px); }
 .logo { display: inline-flex; align-items: center; gap: 10px; color: var(--paper); font-size: 11px; font-weight: 700; letter-spacing: 1.55px; white-space: nowrap; }
-.logo-mark { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid var(--olive); border-radius: 50%; font-family: var(--serif); font-size: 18px; letter-spacing: -2px; }
-.logo-mark span { color: var(--olive-bright); }
+.logo-mark { width: 32px; height: 32px; display: block; }
 .brand-name { color: var(--paper); }
 .navbar nav { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 31px); color: var(--muted); font-size: 11px; }
 .navbar nav a { position: relative; transition: color .2s ease; }
@@ -173,7 +172,7 @@ h1 em, h2 em { color: var(--olive-bright); font-family: var(--serif); font-weigh
 .contact-link:hover { color: var(--olive-bright); border-color: rgba(196, 201, 148, .48); transform: translateY(-2px); }
 .contact-note { margin: 24px 0 0; color: #77796c; font-size: 10px; }
 .footer { border-top: 1px solid var(--line); padding: 22px max(32px, calc((100vw - var(--content)) / 2)); display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; flex-wrap: wrap; }
-.footer .logo-mark { width: 28px; height: 28px; font-size: 15px; }
+.footer .logo-mark { width: 28px; height: 28px; }
 .footer p { font-size: 9px; color: #858675; margin: 0; }
 
 @media (max-width: 980px) {

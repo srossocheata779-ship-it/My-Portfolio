@@ -52,7 +52,7 @@ const learningPath = [
   <div class="site-wrapper">
     <header class="navbar">
       <a href="#home" class="logo" aria-label="Sros Socheata, home">
-        <span class="logo-mark">S<span>.</span></span>
+        <img class="logo-mark" src="/favicon.svg" alt="" />
         <span class="brand-name">SROS SOCHEATA</span>
       </a>
 
@@ -154,6 +154,6 @@ const learningPath = [
       </section>
     </main>
 
-    <footer class="footer"><a href="#home" class="logo" aria-label="Sros Socheata, home"><span class="logo-mark">S<span>.</span></span><span class="brand-name">SROS SOCHEATA</span></a><p>Designed &amp; built by Sros Socheata</p><p>© 2026 · Phnom Penh, Cambodia</p></footer>
+    <footer class="footer"><a href="#home" class="logo" aria-label="Sros Socheata, home"><img class="logo-mark" src="/favicon.svg" alt="" /><span class="brand-name">SROS SOCHEATA</span></a><p>Designed &amp; built by Sros Socheata</p><p>© 2026 · Phnom Penh, Cambodia</p></footer>
   </div>
 </template>
